@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt-get update && sudo apt-get upgrade -y
 
 sudo apt-get install pip -y
@@ -6,7 +8,8 @@ sudo apt-get install \\
     ca-certificates \\
     curl \\
     gnupg \\
-    lsb-release
+    lsb-release \\ 
+    wget -y
 
 # add docker GPG key 
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -20,3 +23,4 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 
 sudo pip install docker-compose -y
+
