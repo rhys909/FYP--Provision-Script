@@ -1,22 +1,33 @@
-sudo apt-get update && sudo apt-get upgrade -y
-
-sudo apt-get install pip -y
-
-sudo apt-get install \\
-    ca-certificates \\
-    curl \\
-    gnupg \\
-    lsb-release
-
-# add docker GPG key 
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-echo \\
-  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \\
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+#!/bin/bash
 
 sudo apt-get update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+sudo apt-get install pip -y
 
-sudo pip install docker-compose -y
+sudo apt-get install ca-certificates curl gnupg lsb-release wget -y
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
+
+sudo pip install --upgrade pip
+
+sudo pip install docker-compose 
+
+d=$(docker --version)
+if [[ $? != 0 ]]; then
+    echo "Command failed."
+elif [[ $d ]]; then
+    echo "Docker is installed"
+else
+    echo "Docker is not installed"
+fi
+
+dc=$(docker-compose --version)
+if [[ $? != 0 ]]; then
+    echo "Command failed."
+elif [[ $dc ]]; then
+    echo "Docker is installed"
+else
+    echo "Docker is not installed"
+fi
