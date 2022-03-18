@@ -6,11 +6,12 @@ sudo apt-get install pip -y
 
 sudo apt-get install ca-certificates curl gnupg lsb-release wget -y
 
-
+#install docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 
 sudo sh get-docker.sh
 
+#Install docker-compose using pip
 sudo pip install --upgrade pip
 
 sudo pip install docker-compose 
